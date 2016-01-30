@@ -1,0 +1,38 @@
+{
+	"ImportPath": "github.com/nildev/lib",
+	"GoVersion": "go1.5",
+	"Packages": [
+		"./..."
+	],
+	"Deps": [
+		{
+			"ImportPath": "github.com/Sirupsen/logrus",
+			"Comment": "v0.8.7-55-gf7f79f7",
+			"Rev": "f7f79f729e0fbe2fcc061db48a9ba0263f588252"
+		},
+		{
+			"ImportPath": "github.com/fatih/camelcase",
+			"Rev": "332844f2fb0193cce955f4687646abbdcc43ceeb"
+		},
+		{
+			"ImportPath": "github.com/gorilla/context",
+			"Rev": "1c83b3eabd45b6d76072b66b746c20815fb2872d"
+		},
+		{
+			"ImportPath": "github.com/gorilla/mux",
+			"Rev": "26a6070f849969ba72b72256e9f14cf519751690"
+		},
+		{
+			"ImportPath": "github.com/juju/errors",
+			"Rev": "b152fd7394724db99a5a4222145d6e4c20e5adff"
+		},
+		{
+			"ImportPath": "golang.org/x/sys/unix",
+			"Rev": "eb2c74142fd19a79b3f237334c7384d5167b1b46"
+		},
+		{
+			"ImportPath": "gopkg.in/check.v1",
+			"Rev": "4f90aeace3a26ad7021961c297b22c42160c7b25"
+		}
+	]
+}

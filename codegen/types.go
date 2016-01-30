@@ -6,7 +6,7 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/fatih/camelcase"
+	"github.com/nildev/lib/Godeps/_workspace/src/github.com/fatih/camelcase"
 )
 
 type (

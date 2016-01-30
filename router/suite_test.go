@@ -3,7 +3,7 @@ package router
 import (
 	"testing"
 
-	. "gopkg.in/check.v1"
+	. "github.com/nildev/lib/Godeps/_workspace/src/gopkg.in/check.v1"
 )
 
 // Run all test suites

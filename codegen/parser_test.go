@@ -5,7 +5,7 @@ import (
 	"go/parser"
 	"go/token"
 
-	. "gopkg.in/check.v1"
+	. "github.com/nildev/lib/Godeps/_workspace/src/gopkg.in/check.v1"
 )
 
 type StructSuite struct{}
