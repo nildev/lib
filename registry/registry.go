@@ -15,7 +15,20 @@ var (
 const (
 	NDMongoDBURL   = "ND_MONGODB_URL"
 	NDDatabaseName = "ND_DATABASE_NAME"
+	NDEnv          = "ND_ENV"
+
+	EnvDev = "dev"
 )
+
+// GetEnv return environment
+func GetEnv() string {
+	env := os.Getenv(NDEnv)
+	if env == "" {
+		env = EnvDev
+	}
+
+	return env
+}
 
 // GetMongoDBClient create mongoDB client based on client
 func GetMongoDBClient() (*mgo.Session, error) {
