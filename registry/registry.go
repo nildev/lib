@@ -3,7 +3,7 @@ package registry
 import (
 	"os"
 
-	"github.com/iron-io/iron_go3/mq"
+	"github.com/nildev/lib/Godeps/_workspace/src/github.com/iron-io/iron_go3/mq"
 	"github.com/nildev/lib/Godeps/_workspace/src/gopkg.in/mgo.v2"
 )
 

@@ -23,6 +23,18 @@
 			"Rev": "26a6070f849969ba72b72256e9f14cf519751690"
 		},
 		{
+			"ImportPath": "github.com/iron-io/iron_go3/api",
+			"Rev": "74297c03db731987799ffc75c7f4139d2c230f95"
+		},
+		{
+			"ImportPath": "github.com/iron-io/iron_go3/config",
+			"Rev": "74297c03db731987799ffc75c7f4139d2c230f95"
+		},
+		{
+			"ImportPath": "github.com/iron-io/iron_go3/mq",
+			"Rev": "74297c03db731987799ffc75c7f4139d2c230f95"
+		},
+		{
 			"ImportPath": "github.com/juju/errors",
 			"Rev": "b152fd7394724db99a5a4222145d6e4c20e5adff"
 		},
