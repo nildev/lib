@@ -63,6 +63,15 @@ func GetDatabaseName() string {
 	return databaseName
 }
 
+// GetGoogleProjectID returns google project ID
+func GetGoogleProjectID() string {
+	envValue := os.Getenv(NDGoogleProjectID)
+	if envValue != "" {
+		googleProjectID = envValue
+	}
+	return googleProjectID
+}
+
 // CreateIronQueue creates and returns Iron.io queue
 func CreateIronQueue(name string) (*mq.Queue, error) {
 	subscribers := []mq.QueueSubscriber{}
