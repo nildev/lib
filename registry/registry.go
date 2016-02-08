@@ -3,20 +3,31 @@ package registry
 import (
 	"os"
 
+	"net/http"
+
 	"github.com/nildev/lib/Godeps/_workspace/src/github.com/iron-io/iron_go3/mq"
 	"github.com/nildev/lib/Godeps/_workspace/src/gopkg.in/mgo.v2"
+	"google.golang.org/cloud"
+	"google.golang.org/cloud/datastore"
+	"google.golang.org/cloud/pubsub"
 )
 
 var (
-	mongoDBClientURL = "mongodb://localhost:27017/test"
-	databaseName     = "default"
+	mongoDBClientURL   = "mongodb://localhost:27017/test"
+	googleDatastoreURL = "http://localhost:8080/"
+	googlePubSubURL    = "http://localhost:8080/"
+	googleProjectID    = ""
+	databaseName       = "default"
 )
 
 // These constants is public API, being taken by lib from environment
 const (
-	NDMongoDBURL   = "ND_MONGODB_URL"
-	NDDatabaseName = "ND_DATABASE_NAME"
-	NDEnv          = "ND_ENV"
+	NDMongoDBURL         = "ND_MONGODB_URL"
+	NDGoogleDatastoreURL = "ND_GOOGLE_DATASTORE_URL"
+	NDGooglePubSubURL    = "ND_GOOGLE_PUBSUB_URL"
+	NDGoogleProjectID    = "ND_GOOGLE_PROJECT_ID"
+	NDDatabaseName       = "ND_DATABASE_NAME"
+	NDEnv                = "ND_ENV"
 
 	EnvDev = "dev"
 )
@@ -70,4 +81,50 @@ func CreateIronQueue(name string) (*mq.Queue, error) {
 
 	queue := mq.New(name)
 	return &queue, nil
+}
+
+// CreateGoogleDatastoreClient create client to communicate to google Datastore service
+func CreateGoogleDatastoreClient() (*datastore.Client, error) {
+	envValue := os.Getenv(NDGoogleDatastoreURL)
+	if envValue != "" {
+		googleDatastoreURL = envValue
+	}
+
+	envValue = os.Getenv(NDGoogleProjectID)
+	if envValue != "" {
+		googleProjectID = envValue
+	}
+
+	ctx := cloud.NewContext(googleProjectID, http.DefaultClient)
+	o := []cloud.ClientOption{
+		cloud.WithBaseHTTP(http.DefaultClient),
+		cloud.WithEndpoint(googleDatastoreURL),
+	}
+	client, err := datastore.NewClient(ctx, googleProjectID, o...)
+	if err != nil {
+		return nil, err
+	}
+
+	return client, nil
+}
+
+// CreateGooglePubSubClient returns client communicate with google Pub/Sub service
+func CreateGooglePubSubClient() (*pubsub.Client, error) {
+	envValue := os.Getenv(NDGooglePubSubURL)
+	if envValue != "" {
+		googlePubSubURL = envValue
+	}
+
+	envValue = os.Getenv(NDGoogleProjectID)
+	if envValue != "" {
+		googleProjectID = envValue
+	}
+
+	ctx := cloud.NewContext(googleProjectID, http.DefaultClient)
+	o := []cloud.ClientOption{
+		cloud.WithBaseHTTP(http.DefaultClient),
+		cloud.WithEndpoint(googleDatastoreURL),
+	}
+	client, _ := pubsub.NewClient(ctx, googleProjectID, o...)
+	return client, nil
 }
