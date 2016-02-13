@@ -14,15 +14,16 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	context "github.com/nildev/lib/Godeps/_workspace/src/golang.org/x/net/context"
-	ctxhttp "github.com/nildev/lib/Godeps/_workspace/src/golang.org/x/net/context/ctxhttp"
-	gensupport "github.com/nildev/lib/Godeps/_workspace/src/google.golang.org/api/gensupport"
-	googleapi "github.com/nildev/lib/Godeps/_workspace/src/google.golang.org/api/googleapi"
 	"io"
 	"net/http"
 	"net/url"
 	"strconv"
 	"strings"
+
+	context "github.com/nildev/lib/Godeps/_workspace/src/golang.org/x/net/context"
+	ctxhttp "github.com/nildev/lib/Godeps/_workspace/src/golang.org/x/net/context/ctxhttp"
+	gensupport "github.com/nildev/lib/Godeps/_workspace/src/google.golang.org/api/gensupport"
+	googleapi "github.com/nildev/lib/Godeps/_workspace/src/google.golang.org/api/googleapi"
 )
 
 // Always reference these packages, just in case the auto-generated code
