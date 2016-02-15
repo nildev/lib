@@ -14,7 +14,7 @@ var _ = Suite(&StructSuite{})
 
 func (s *StructSuite) TestIfCorrectFieldsAreBeingGeneratedForStruct(c *C) {
 	fset := token.NewFileSet()
-	f, _ := parser.ParseFile(fset, "fixtures/funcs.go", nil, parser.AllErrors)
+	f, _ := parser.ParseFile(fset, "fixtures/funcs.go", nil, parser.ParseComments)
 
 	ast.Inspect(f, func(n ast.Node) bool {
 		switch x := n.(type) {
@@ -111,14 +111,14 @@ func (s *StructSuite) TestIfCorrectStructsAreBeingGenerated(c *C) {
 
 				c.Assert(i.Name, Equals, "InputCheckPrimitive")
 				c.Assert(o.Name, Equals, "OutputCheckPrimitive")
-				c.Assert(i.Imports["bitbucket.org/nildev/lib/codegen/fixtures/sub"].Alias, Equals, "")
+				c.Assert(i.Imports["github.com/nildev/lib/codegen/fixtures/sub"].Alias, Equals, "")
 				c.Assert(i.Imports["alias"].Alias, Equals, "alias")
-				c.Assert(i.Imports["bitbucket.org/nildev/lib/codegen/fixtures/sub"].Path, Equals, "bitbucket.org/nildev/lib/codegen/fixtures/sub")
-				c.Assert(i.Imports["alias"].Path, Equals, "bitbucket.org/nildev/lib/codegen/fixtures/suby")
-				c.Assert(o.Imports["bitbucket.org/nildev/lib/codegen/fixtures/sub"].Alias, Equals, "")
+				c.Assert(i.Imports["github.com/nildev/lib/codegen/fixtures/sub"].Path, Equals, "github.com/nildev/lib/codegen/fixtures/sub")
+				c.Assert(i.Imports["alias"].Path, Equals, "github.com/nildev/lib/codegen/fixtures/suby")
+				c.Assert(o.Imports["github.com/nildev/lib/codegen/fixtures/sub"].Alias, Equals, "")
 				c.Assert(o.Imports["alias"].Alias, Equals, "alias")
-				c.Assert(o.Imports["bitbucket.org/nildev/lib/codegen/fixtures/sub"].Path, Equals, "bitbucket.org/nildev/lib/codegen/fixtures/sub")
-				c.Assert(o.Imports["alias"].Path, Equals, "bitbucket.org/nildev/lib/codegen/fixtures/suby")
+				c.Assert(o.Imports["github.com/nildev/lib/codegen/fixtures/sub"].Path, Equals, "github.com/nildev/lib/codegen/fixtures/sub")
+				c.Assert(o.Imports["alias"].Path, Equals, "github.com/nildev/lib/codegen/fixtures/suby")
 			}
 
 			if x.Name.Name == "CheckNestedMap" {
@@ -127,12 +127,12 @@ func (s *StructSuite) TestIfCorrectStructsAreBeingGenerated(c *C) {
 				c.Assert(i.Name, Equals, "InputCheckNestedMap")
 				c.Assert(o.Name, Equals, "OutputCheckNestedMap")
 				c.Assert(i.Imports["alias"].Alias, Equals, "alias")
-				c.Assert(i.Imports["bitbucket.org/nildev/lib/codegen/fixtures/sub"].Path, Equals, "bitbucket.org/nildev/lib/codegen/fixtures/sub")
-				c.Assert(i.Imports["alias"].Path, Equals, "bitbucket.org/nildev/lib/codegen/fixtures/suby")
-				c.Assert(o.Imports["bitbucket.org/nildev/lib/codegen/fixtures/sub"].Alias, Equals, "")
+				c.Assert(i.Imports["github.com/nildev/lib/codegen/fixtures/sub"].Path, Equals, "github.com/nildev/lib/codegen/fixtures/sub")
+				c.Assert(i.Imports["alias"].Path, Equals, "github.com/nildev/lib/codegen/fixtures/suby")
+				c.Assert(o.Imports["github.com/nildev/lib/codegen/fixtures/sub"].Alias, Equals, "")
 				c.Assert(o.Imports["alias"].Alias, Equals, "alias")
-				c.Assert(o.Imports["bitbucket.org/nildev/lib/codegen/fixtures/sub"].Path, Equals, "bitbucket.org/nildev/lib/codegen/fixtures/sub")
-				c.Assert(o.Imports["alias"].Path, Equals, "bitbucket.org/nildev/lib/codegen/fixtures/suby")
+				c.Assert(o.Imports["github.com/nildev/lib/codegen/fixtures/sub"].Path, Equals, "github.com/nildev/lib/codegen/fixtures/sub")
+				c.Assert(o.Imports["alias"].Path, Equals, "github.com/nildev/lib/codegen/fixtures/suby")
 			}
 
 			// for variadic funcs we will make only 1 field
@@ -143,8 +143,8 @@ func (s *StructSuite) TestIfCorrectStructsAreBeingGenerated(c *C) {
 				c.Assert(o, IsNil)
 
 				c.Assert(i.Imports["alias"].Alias, Equals, "alias")
-				c.Assert(i.Imports["bitbucket.org/nildev/lib/codegen/fixtures/sub"].Path, Equals, "bitbucket.org/nildev/lib/codegen/fixtures/sub")
-				c.Assert(i.Imports["alias"].Path, Equals, "bitbucket.org/nildev/lib/codegen/fixtures/suby")
+				c.Assert(i.Imports["github.com/nildev/lib/codegen/fixtures/sub"].Path, Equals, "github.com/nildev/lib/codegen/fixtures/sub")
+				c.Assert(i.Imports["alias"].Path, Equals, "github.com/nildev/lib/codegen/fixtures/suby")
 			}
 
 			if x.Name.Name == "CheckComplex" {
@@ -153,12 +153,12 @@ func (s *StructSuite) TestIfCorrectStructsAreBeingGenerated(c *C) {
 				c.Assert(i.Name, Equals, "InputCheckComplex")
 				c.Assert(o.Name, Equals, "OutputCheckComplex")
 				c.Assert(i.Imports["alias"].Alias, Equals, "alias")
-				c.Assert(i.Imports["bitbucket.org/nildev/lib/codegen/fixtures/sub"].Path, Equals, "bitbucket.org/nildev/lib/codegen/fixtures/sub")
-				c.Assert(i.Imports["alias"].Path, Equals, "bitbucket.org/nildev/lib/codegen/fixtures/suby")
-				c.Assert(o.Imports["bitbucket.org/nildev/lib/codegen/fixtures/sub"].Alias, Equals, "")
+				c.Assert(i.Imports["github.com/nildev/lib/codegen/fixtures/sub"].Path, Equals, "github.com/nildev/lib/codegen/fixtures/sub")
+				c.Assert(i.Imports["alias"].Path, Equals, "github.com/nildev/lib/codegen/fixtures/suby")
+				c.Assert(o.Imports["github.com/nildev/lib/codegen/fixtures/sub"].Alias, Equals, "")
 				c.Assert(o.Imports["alias"].Alias, Equals, "alias")
-				c.Assert(o.Imports["bitbucket.org/nildev/lib/codegen/fixtures/sub"].Path, Equals, "bitbucket.org/nildev/lib/codegen/fixtures/sub")
-				c.Assert(o.Imports["alias"].Path, Equals, "bitbucket.org/nildev/lib/codegen/fixtures/suby")
+				c.Assert(o.Imports["github.com/nildev/lib/codegen/fixtures/sub"].Path, Equals, "github.com/nildev/lib/codegen/fixtures/sub")
+				c.Assert(o.Imports["alias"].Path, Equals, "github.com/nildev/lib/codegen/fixtures/suby")
 			}
 		}
 		return true
@@ -176,10 +176,10 @@ func (s *StructSuite) TestIfCorrectFuncsAreBeingGenerated(c *C) {
 				fn := MakeFunc(x, f.Imports, f.Comments)
 
 				c.Assert(fn.GetHandlerName(), Equals, "CheckPrimitiveHandler")
-				c.Assert(fn.GetMethod(), Equals, "POST")
-				c.Assert(fn.GetFullName(), Equals, "bitbucket.org/nildev/lib/codegen/fixtures:CheckPrimitive")
-				c.Assert(fn.GetPattern(), Equals, "/CheckPrimitive")
-				c.Assert(fn.GetPkgPath(), Equals, "bitbucket.org/nildev/lib/codegen/fixtures")
+				c.Assert(fn.GetMethod(), Equals, "GET")
+				c.Assert(fn.GetFullName(), Equals, "github.com/nildev/lib/codegen/fixtures:CheckPrimitive")
+				c.Assert(fn.GetPattern(), Equals, "/check-primitive")
+				c.Assert(fn.GetPkgPath(), Equals, "github.com/nildev/lib/codegen/fixtures")
 				c.Assert(fn.GetOnlyPkgName(), Equals, "fixtures")
 			}
 
@@ -187,20 +187,20 @@ func (s *StructSuite) TestIfCorrectFuncsAreBeingGenerated(c *C) {
 				fn := MakeFunc(x, f.Imports, f.Comments)
 
 				c.Assert(fn.GetHandlerName(), Equals, "CheckNestedMapHandler")
-				c.Assert(fn.GetMethod(), Equals, "POST")
-				c.Assert(fn.GetFullName(), Equals, "bitbucket.org/nildev/lib/codegen/fixtures:CheckNestedMap")
-				c.Assert(fn.GetPattern(), Equals, "/CheckNestedMap")
-				c.Assert(fn.GetPkgPath(), Equals, "bitbucket.org/nildev/lib/codegen/fixtures")
+				c.Assert(fn.GetMethod(), Equals, "DELETE")
+				c.Assert(fn.GetFullName(), Equals, "github.com/nildev/lib/codegen/fixtures:CheckNestedMap")
+				c.Assert(fn.GetPattern(), Equals, "/check-nested-map")
+				c.Assert(fn.GetPkgPath(), Equals, "github.com/nildev/lib/codegen/fixtures")
 				c.Assert(fn.GetOnlyPkgName(), Equals, "fixtures")
 			}
 
 			if x.Name.Name == "CheckVariadicParam" {
 				fn := MakeFunc(x, f.Imports, f.Comments)
 				c.Assert(fn.GetHandlerName(), Equals, "CheckVariadicParamHandler")
-				c.Assert(fn.GetMethod(), Equals, "POST")
-				c.Assert(fn.GetFullName(), Equals, "bitbucket.org/nildev/lib/codegen/fixtures:CheckVariadicParam")
-				c.Assert(fn.GetPattern(), Equals, "/CheckVariadicParam")
-				c.Assert(fn.GetPkgPath(), Equals, "bitbucket.org/nildev/lib/codegen/fixtures")
+				c.Assert(fn.GetMethod(), Equals, "PUT")
+				c.Assert(fn.GetFullName(), Equals, "github.com/nildev/lib/codegen/fixtures:CheckVariadicParam")
+				c.Assert(fn.GetPattern(), Equals, "/check-variadic-param")
+				c.Assert(fn.GetPkgPath(), Equals, "github.com/nildev/lib/codegen/fixtures")
 				c.Assert(fn.GetOnlyPkgName(), Equals, "fixtures")
 			}
 
@@ -208,9 +208,9 @@ func (s *StructSuite) TestIfCorrectFuncsAreBeingGenerated(c *C) {
 				fn := MakeFunc(x, f.Imports, f.Comments)
 				c.Assert(fn.GetHandlerName(), Equals, "CheckComplexHandler")
 				c.Assert(fn.GetMethod(), Equals, "POST")
-				c.Assert(fn.GetFullName(), Equals, "bitbucket.org/nildev/lib/codegen/fixtures:CheckComplex")
-				c.Assert(fn.GetPattern(), Equals, "/CheckComplex")
-				c.Assert(fn.GetPkgPath(), Equals, "bitbucket.org/nildev/lib/codegen/fixtures")
+				c.Assert(fn.GetFullName(), Equals, "github.com/nildev/lib/codegen/fixtures:CheckComplex")
+				c.Assert(fn.GetPattern(), Equals, "/check-complex")
+				c.Assert(fn.GetPkgPath(), Equals, "github.com/nildev/lib/codegen/fixtures")
 				c.Assert(fn.GetOnlyPkgName(), Equals, "fixtures")
 			}
 		}
