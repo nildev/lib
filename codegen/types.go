@@ -182,7 +182,7 @@ func (fld Field) GetOutVarName() string {
 }
 
 func (s Struct) GetName() string {
-	return makeDashedFromCamelCase(s.Name)
+	return s.Name
 }
 
 func (s Struct) GetFieldsSlice() []Field {
