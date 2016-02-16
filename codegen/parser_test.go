@@ -213,6 +213,30 @@ func (s *StructSuite) TestIfCorrectFuncsAreBeingGenerated(c *C) {
 				c.Assert(fn.GetPkgPath(), Equals, "github.com/nildev/lib/codegen/fixtures")
 				c.Assert(fn.GetOnlyPkgName(), Equals, "fixtures")
 			}
+
+			if x.Name.Name == "CheckGetter" {
+				fn := MakeFunc(x, f.Imports, f.Comments)
+
+				c.Assert(fn.GetHandlerName(), Equals, "CheckGetterHandler")
+				c.Assert(fn.GetMethod(), Equals, "GET")
+				c.Assert(fn.GetFullName(), Equals, "github.com/nildev/lib/codegen/fixtures:CheckGetter")
+				c.Assert(fn.GetPattern(), Equals, "/my-path/{varOne}/{xxx}/sub-resource/{second:[a-z]+}")
+				c.Assert(fn.GetPkgPath(), Equals, "github.com/nildev/lib/codegen/fixtures")
+				c.Assert(fn.GetOnlyPkgName(), Equals, "fixtures")
+				c.Assert(fn.GetQuery(), DeepEquals, []string{"mineRegex", "{mineRegex:[A-Z]+}", "mineRegex2", "{mineRegex2:[0-9]{4}[a-z]{5}}", "mineRegex26", "{mineRegex26:[0-9]{4}[a-z]{5}}", "notOptional", ""})
+			}
+
+			if x.Name.Name == "CheckPoster" {
+				fn := MakeFunc(x, f.Imports, f.Comments)
+
+				c.Assert(fn.GetHandlerName(), Equals, "CheckPosterHandler")
+				c.Assert(fn.GetMethod(), Equals, "POST")
+				c.Assert(fn.GetFullName(), Equals, "github.com/nildev/lib/codegen/fixtures:CheckPoster")
+				c.Assert(fn.GetPattern(), Equals, "/my-path/{varOne}/{xxx}/sub-resource/{second:[a-z]+}")
+				c.Assert(fn.GetPkgPath(), Equals, "github.com/nildev/lib/codegen/fixtures")
+				c.Assert(fn.GetOnlyPkgName(), Equals, "fixtures")
+				c.Assert(fn.GetQuery(), DeepEquals, []string{"mineRegex", "{mineRegex:[A-Z]+}", "notOptional", ""})
+			}
 		}
 		return true
 	})

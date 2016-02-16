@@ -39,6 +39,7 @@ type (
 		Name    string
 		Method  string
 		Pattern string
+		Query   []string
 		In      *Struct
 		Out     *Struct
 	}
@@ -80,8 +81,12 @@ func (f Func) GetMethod() string {
 	return f.Method
 }
 
+func (f Func) GetQuery() []string {
+	return f.Query
+}
+
 func (f Func) GetPattern() string {
-	return "/" + makeDashedFromCamelCase(f.Pattern)
+	return f.Pattern
 }
 
 func (f Func) GetHandlerName() string {
@@ -150,9 +155,4 @@ func makeFirstUpperCase(s string) string {
 	a := []rune(s)
 	a[0] = unicode.ToUpper(a[0])
 	return string(a)
-}
-
-func makeDashedFromCamelCase(in string) string {
-	splitted := camelcase.Split(in)
-	return strings.ToLower(strings.Join(splitted, "-"))
 }
