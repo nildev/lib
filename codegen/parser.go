@@ -168,7 +168,7 @@ func MakePattern(fn *ast.FuncDecl, comments map[string][]string) string {
 }
 
 func MakeMethod(fn *ast.FuncDecl, comments map[string][]string) string {
-	method := MethodPOST
+	method := MethodGET
 
 	if v, ok := comments[TokenNameMethod]; ok {
 		if len(v) == 2 {

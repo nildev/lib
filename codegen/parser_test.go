@@ -19,6 +19,16 @@ func (s *StructSuite) TestIfCorrectFieldsAreBeingGeneratedForStruct(c *C) {
 	ast.Inspect(f, func(n ast.Node) bool {
 		switch x := n.(type) {
 		case *ast.FuncDecl:
+			if x.Name.Name == "CheckNone" {
+				fields := makeFields(x.Type.Params)
+
+				c.Assert("string", Equals, fields["boo"].Type)
+
+				ofields := makeFields(x.Type.Results)
+
+				c.Assert("string", Equals, ofields["rez"].Type)
+			}
+
 			if x.Name.Name == "CheckPrimitive" {
 				fields := makeFields(x.Type.Params)
 
@@ -106,6 +116,21 @@ func (s *StructSuite) TestIfCorrectStructsAreBeingGenerated(c *C) {
 	ast.Inspect(f, func(n ast.Node) bool {
 		switch x := n.(type) {
 		case *ast.FuncDecl:
+			if x.Name.Name == "CheckNone" {
+				i, o := MakeInputOutputStructs(x, f.Imports, f.Comments)
+
+				c.Assert(i.Name, Equals, "InputCheckNone")
+				c.Assert(o.Name, Equals, "OutputCheckNone")
+				c.Assert(i.Imports["github.com/nildev/lib/codegen/fixtures/sub"].Alias, Equals, "")
+				c.Assert(i.Imports["alias"].Alias, Equals, "alias")
+				c.Assert(i.Imports["github.com/nildev/lib/codegen/fixtures/sub"].Path, Equals, "github.com/nildev/lib/codegen/fixtures/sub")
+				c.Assert(i.Imports["alias"].Path, Equals, "github.com/nildev/lib/codegen/fixtures/suby")
+				c.Assert(o.Imports["github.com/nildev/lib/codegen/fixtures/sub"].Alias, Equals, "")
+				c.Assert(o.Imports["alias"].Alias, Equals, "alias")
+				c.Assert(o.Imports["github.com/nildev/lib/codegen/fixtures/sub"].Path, Equals, "github.com/nildev/lib/codegen/fixtures/sub")
+				c.Assert(o.Imports["alias"].Path, Equals, "github.com/nildev/lib/codegen/fixtures/suby")
+			}
+
 			if x.Name.Name == "CheckPrimitive" {
 				i, o := MakeInputOutputStructs(x, f.Imports, f.Comments)
 
@@ -172,6 +197,17 @@ func (s *StructSuite) TestIfCorrectFuncsAreBeingGenerated(c *C) {
 	ast.Inspect(f, func(n ast.Node) bool {
 		switch x := n.(type) {
 		case *ast.FuncDecl:
+			if x.Name.Name == "CheckNone" {
+				fn := MakeFunc(x, f.Imports, f.Comments)
+
+				c.Assert(fn.GetHandlerName(), Equals, "CheckNoneHandler")
+				c.Assert(fn.GetMethod(), Equals, "GET")
+				c.Assert(fn.GetFullName(), Equals, "github.com/nildev/lib/codegen/fixtures:CheckNone")
+				c.Assert(fn.GetPattern(), Equals, "/check-none")
+				c.Assert(fn.GetPkgPath(), Equals, "github.com/nildev/lib/codegen/fixtures")
+				c.Assert(fn.GetOnlyPkgName(), Equals, "fixtures")
+			}
+
 			if x.Name.Name == "CheckPrimitive" {
 				fn := MakeFunc(x, f.Imports, f.Comments)
 
