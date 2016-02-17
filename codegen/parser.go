@@ -74,7 +74,11 @@ func MakeFunc(fn *ast.FuncDecl, imps []*ast.ImportSpec, comments []*ast.CommentG
 		PkgPath: packagePath,
 		Name:    fn.Name.Name,
 	}
-	fnParsedComments := parseAllComments(fn.Doc.List)
+
+	fnParsedComments := map[string][]string{}
+	if fn.Doc != nil {
+		fnParsedComments = parseAllComments(fn.Doc.List)
+	}
 
 	f.Method = MakeMethod(fn, fnParsedComments)
 	f.Pattern = MakePattern(fn, fnParsedComments)
