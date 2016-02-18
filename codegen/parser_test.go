@@ -200,6 +200,7 @@ func (s *StructSuite) TestIfCorrectFuncsAreBeingGenerated(c *C) {
 			if x.Name.Name == "CheckNone" {
 				fn := MakeFunc(x, f.Imports, f.Comments)
 
+				c.Assert(fn.GetProtected(), Equals, true)
 				c.Assert(fn.GetHandlerName(), Equals, "CheckNoneHandler")
 				c.Assert(fn.GetMethod(), Equals, "GET")
 				c.Assert(fn.GetFullName(), Equals, "github.com/nildev/lib/codegen/fixtures:CheckNone")
@@ -211,6 +212,7 @@ func (s *StructSuite) TestIfCorrectFuncsAreBeingGenerated(c *C) {
 			if x.Name.Name == "CheckPrimitive" {
 				fn := MakeFunc(x, f.Imports, f.Comments)
 
+				c.Assert(fn.GetProtected(), Equals, false)
 				c.Assert(fn.GetHandlerName(), Equals, "CheckPrimitiveHandler")
 				c.Assert(fn.GetMethod(), Equals, "GET")
 				c.Assert(fn.GetFullName(), Equals, "github.com/nildev/lib/codegen/fixtures:CheckPrimitive")

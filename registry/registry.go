@@ -32,6 +32,13 @@ const (
 	EnvDev = "dev"
 )
 
+type (
+	// User type
+	User struct {
+		Data map[string]interface{}
+	}
+)
+
 // GetEnv return environment
 func GetEnv() string {
 	env := os.Getenv(NDEnv)
