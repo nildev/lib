@@ -1,7 +1,7 @@
 package router
 
 import (
-	"github.com/nildev/lib/Godeps/_workspace/src/github.com/gorilla/mux"
+	"github.com/gorilla/mux"
 )
 
 // NewRouter creates a gorilla/mux router from a list of Route structures.

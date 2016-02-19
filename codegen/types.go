@@ -8,8 +8,8 @@ import (
 
 	"strconv"
 
+	"github.com/fatih/camelcase"
 	"github.com/juju/errors"
-	"github.com/nildev/lib/Godeps/_workspace/src/github.com/fatih/camelcase"
 )
 
 type (

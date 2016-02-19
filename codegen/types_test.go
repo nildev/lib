@@ -1,6 +1,6 @@
 package codegen
 
-import . "github.com/nildev/lib/Godeps/_workspace/src/gopkg.in/check.v1"
+import . "gopkg.in/check.v1"
 
 type TypesSuite struct{}
 

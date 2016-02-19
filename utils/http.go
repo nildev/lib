@@ -7,7 +7,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/nildev/lib/Godeps/_workspace/src/github.com/juju/errors"
+	"github.com/juju/errors"
 )
 
 // GetRequestBody reads request and returns bytes

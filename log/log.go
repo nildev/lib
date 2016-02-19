@@ -1,7 +1,7 @@
 package log
 
 import (
-	"github.com/nildev/lib/Godeps/_workspace/src/github.com/Sirupsen/logrus"
+	"github.com/Sirupsen/logrus"
 )
 
 // Logger Interface

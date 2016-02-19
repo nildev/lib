@@ -5,11 +5,11 @@ import (
 
 	"net/http"
 
-	"github.com/nildev/lib/Godeps/_workspace/src/github.com/iron-io/iron_go3/mq"
-	"github.com/nildev/lib/Godeps/_workspace/src/google.golang.org/cloud"
-	"github.com/nildev/lib/Godeps/_workspace/src/google.golang.org/cloud/datastore"
-	"github.com/nildev/lib/Godeps/_workspace/src/google.golang.org/cloud/pubsub"
-	"github.com/nildev/lib/Godeps/_workspace/src/gopkg.in/mgo.v2"
+	"github.com/iron-io/iron_go3/mq"
+	"google.golang.org/cloud"
+	"google.golang.org/cloud/datastore"
+	"google.golang.org/cloud/pubsub"
+	"gopkg.in/mgo.v2"
 )
 
 var (
