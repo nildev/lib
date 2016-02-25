@@ -88,6 +88,8 @@ func (s *StructSuite) TestIfCorrectFieldsAreBeingGeneratedForStruct(c *C) {
 				fields := makeFields(x.Type.Params)
 
 				c.Assert(fields["str1"].Type, Equals, "MyStruct")
+				c.Assert(fields["strPtr"].Type, Equals, "*MyStruct")
+				c.Assert(fields["strSubPtr"].Type, Equals, "*sub.MyStruct")
 				c.Assert(fields["str2"].Type, Equals, "MyOtherStruct")
 				c.Assert(fields["inteM"].Type, Equals, "sub.MyInterface")
 				c.Assert(fields["inte"].Type, Equals, "interface{}")
@@ -97,6 +99,8 @@ func (s *StructSuite) TestIfCorrectFieldsAreBeingGeneratedForStruct(c *C) {
 				fields = makeFields(x.Type.Results)
 
 				c.Assert(fields["rstr1"].Type, Equals, "MyStruct")
+				c.Assert(fields["rstrPtr"].Type, Equals, "*MyStruct")
+				c.Assert(fields["rstrSubPtr"].Type, Equals, "*sub.MyStruct")
 				c.Assert(fields["rstr2"].Type, Equals, "MyOtherStruct")
 				c.Assert(fields["rinteM"].Type, Equals, "sub.MyInterface")
 				c.Assert(fields["rinte"].Type, Equals, "interface{}")

@@ -28,7 +28,12 @@ func MakeUser(data map[string]interface{}) *User {
 
 // GetEmail returns use email
 func (u *User) GetEmail() string {
-	return u.Get("email").(string)
+	r, ok := u.Get("email")
+	if ok {
+		return r.(string)
+	}
+
+	return ""
 }
 
 // Set the given value under the specified key.
