@@ -206,7 +206,7 @@ func (s *StructSuite) TestIfCorrectFuncsAreBeingGenerated(c *C) {
 
 				c.Assert(fn.GetProtected(), Equals, true)
 				c.Assert(fn.GetHandlerName(), Equals, "CheckNoneHandler")
-				c.Assert(fn.GetMethod(), Equals, "GET")
+				c.Assert(fn.GetMethod(), DeepEquals, []string{"GET"})
 				c.Assert(fn.GetFullName(), Equals, "github.com/nildev/lib/codegen/fixtures:CheckNone")
 				c.Assert(fn.GetPattern(), Equals, "/check-none")
 				c.Assert(fn.GetPkgPath(), Equals, "github.com/nildev/lib/codegen/fixtures")
@@ -218,7 +218,7 @@ func (s *StructSuite) TestIfCorrectFuncsAreBeingGenerated(c *C) {
 
 				c.Assert(fn.GetProtected(), Equals, false)
 				c.Assert(fn.GetHandlerName(), Equals, "CheckPrimitiveHandler")
-				c.Assert(fn.GetMethod(), Equals, "GET")
+				c.Assert(fn.GetMethod(), DeepEquals, []string{"GET"})
 				c.Assert(fn.GetFullName(), Equals, "github.com/nildev/lib/codegen/fixtures:CheckPrimitive")
 				c.Assert(fn.GetPattern(), Equals, "/check-primitive")
 				c.Assert(fn.GetPkgPath(), Equals, "github.com/nildev/lib/codegen/fixtures")
@@ -229,7 +229,7 @@ func (s *StructSuite) TestIfCorrectFuncsAreBeingGenerated(c *C) {
 				fn := MakeFunc(x, f.Imports, f.Comments)
 
 				c.Assert(fn.GetHandlerName(), Equals, "CheckNestedMapHandler")
-				c.Assert(fn.GetMethod(), Equals, "DELETE")
+				c.Assert(fn.GetMethod(), DeepEquals, []string{"DELETE"})
 				c.Assert(fn.GetFullName(), Equals, "github.com/nildev/lib/codegen/fixtures:CheckNestedMap")
 				c.Assert(fn.GetPattern(), Equals, "/check-nested-map")
 				c.Assert(fn.GetPkgPath(), Equals, "github.com/nildev/lib/codegen/fixtures")
@@ -239,7 +239,7 @@ func (s *StructSuite) TestIfCorrectFuncsAreBeingGenerated(c *C) {
 			if x.Name.Name == "CheckVariadicParam" {
 				fn := MakeFunc(x, f.Imports, f.Comments)
 				c.Assert(fn.GetHandlerName(), Equals, "CheckVariadicParamHandler")
-				c.Assert(fn.GetMethod(), Equals, "PUT")
+				c.Assert(fn.GetMethod(), DeepEquals, []string{"PUT"})
 				c.Assert(fn.GetFullName(), Equals, "github.com/nildev/lib/codegen/fixtures:CheckVariadicParam")
 				c.Assert(fn.GetPattern(), Equals, "/check-variadic-param")
 				c.Assert(fn.GetPkgPath(), Equals, "github.com/nildev/lib/codegen/fixtures")
@@ -249,7 +249,7 @@ func (s *StructSuite) TestIfCorrectFuncsAreBeingGenerated(c *C) {
 			if x.Name.Name == "CheckComplex" {
 				fn := MakeFunc(x, f.Imports, f.Comments)
 				c.Assert(fn.GetHandlerName(), Equals, "CheckComplexHandler")
-				c.Assert(fn.GetMethod(), Equals, "POST")
+				c.Assert(fn.GetMethod(), DeepEquals, []string{"POST"})
 				c.Assert(fn.GetFullName(), Equals, "github.com/nildev/lib/codegen/fixtures:CheckComplex")
 				c.Assert(fn.GetPattern(), Equals, "/check-complex")
 				c.Assert(fn.GetPkgPath(), Equals, "github.com/nildev/lib/codegen/fixtures")
@@ -260,7 +260,7 @@ func (s *StructSuite) TestIfCorrectFuncsAreBeingGenerated(c *C) {
 				fn := MakeFunc(x, f.Imports, f.Comments)
 
 				c.Assert(fn.GetHandlerName(), Equals, "CheckGetterHandler")
-				c.Assert(fn.GetMethod(), Equals, "GET")
+				c.Assert(fn.GetMethod(), DeepEquals, []string{"GET"})
 				c.Assert(fn.GetFullName(), Equals, "github.com/nildev/lib/codegen/fixtures:CheckGetter")
 				c.Assert(fn.GetPattern(), Equals, "/my-path/{varOne}/{xxx}/sub-resource/{second:[a-z]+}")
 				c.Assert(fn.GetPkgPath(), Equals, "github.com/nildev/lib/codegen/fixtures")
@@ -272,7 +272,7 @@ func (s *StructSuite) TestIfCorrectFuncsAreBeingGenerated(c *C) {
 				fn := MakeFunc(x, f.Imports, f.Comments)
 
 				c.Assert(fn.GetHandlerName(), Equals, "CheckPosterHandler")
-				c.Assert(fn.GetMethod(), Equals, "POST")
+				c.Assert(fn.GetMethod(), DeepEquals, []string{"POST"})
 				c.Assert(fn.GetFullName(), Equals, "github.com/nildev/lib/codegen/fixtures:CheckPoster")
 				c.Assert(fn.GetPattern(), Equals, "/my-path/{varOne}/{xxx}/sub-resource/{second:[a-z]+}")
 				c.Assert(fn.GetPkgPath(), Equals, "github.com/nildev/lib/codegen/fixtures")
