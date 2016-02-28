@@ -191,9 +191,10 @@ func MakeMethod(fn *ast.FuncDecl, comments map[string][]string) []string {
 	method := []string{}
 
 	if v, ok := comments[TokenNameMethod]; ok {
-		if len(v) > 1 {
-			for i := 1; i < len(v); i++ {
-				method = append(method, v[i])
+		if len(v) == 2 {
+			methods := strings.Split(v[1], " ")
+			for _, m := range methods {
+				method = append(method, m)
 			}
 		}
 	}

@@ -272,7 +272,7 @@ func (s *StructSuite) TestIfCorrectFuncsAreBeingGenerated(c *C) {
 				fn := MakeFunc(x, f.Imports, f.Comments)
 
 				c.Assert(fn.GetHandlerName(), Equals, "CheckPosterHandler")
-				c.Assert(fn.GetMethod(), DeepEquals, []string{"POST"})
+				c.Assert(fn.GetMethod(), DeepEquals, []string{"POST", "OPTIONS"})
 				c.Assert(fn.GetFullName(), Equals, "github.com/nildev/lib/codegen/fixtures:CheckPoster")
 				c.Assert(fn.GetPattern(), Equals, "/my-path/{varOne}/{xxx}/sub-resource/{second:[a-z]+}")
 				c.Assert(fn.GetPkgPath(), Equals, "github.com/nildev/lib/codegen/fixtures")
